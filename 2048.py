@@ -21,7 +21,7 @@ first_F = False
 scape = True
 
 appdir = dirname(realpath(__file__)) # Getts current app location
-datadir = "2048datashit" # folder name for the game data
+datadir = "2048data" # folder name for the game data
 if not os.path.exists(join(appdir, datadir)):
     try:
         os.makedirs(join(appdir, datadir), exist_ok=True)  # Create nested directories if necessary
@@ -482,7 +482,7 @@ def top_score_check(score, filename):
 def play_sound(filename): # Defining function for playing sound using pygame
   try:
     pygame.init()
-    sound = pygame.mixer.Sound(filename)
+    sound = pygame.mixer.Sound(join(appdir, datadir, filename))
     sound.play()
   except FileNotFoundError:
     print(f"\033[31mError: Could not find sound effect '{filename}'\033[0m")
@@ -503,7 +503,7 @@ def fast_input_fun(keyst): # Defining a function for everything in fast move
         move_right (board)
     if fvalidcheck == board :
         if not mute :
-            play_sound('Menu popup.wav')
+            play_sound('SFX2.wav')
         print ("\033[31myour move is invalid\033[0m")
         print ("\033[93mPress 'F' to exit fast input mode\033[0m")
         score_box()
@@ -527,7 +527,7 @@ def fast_input_fun(keyst): # Defining a function for everything in fast move
         place_random_tile(board)
         print_board(board)
         if not mute :
-            play_sound('Balloon.wav') # Play the sound
+            play_sound('SFX1.wav') # Play the sound
         if 0 not in  board :
             # Check for game over
             bak = copy.deepcopy(board) # Backup for board
@@ -608,7 +608,7 @@ def on_press(key): # Key press listener function
             board = copy.deepcopy(preboard) 
             print_board(board)
             if not mute :
-                play_sound('Balloon.wav') # Play the sound
+                play_sound('SFX1.wav') # Play the sound
             print("\033[32mloading Previous state complete\033[0m")
         elif key.char.upper() == 'M': # Mute/Unmute the sound in fast input mode
             if mute :
@@ -618,7 +618,7 @@ def on_press(key): # Key press listener function
         else : # Error for anything else
             clear_screen()
             if not mute :
-                play_sound('Menu popup.wav')
+                play_sound('SFX2.wav')
             print ("\033[31mWrong input\033[0m")
             print ("\033[93mPress 'F' to exit fast input mode\033[0m")
             score_box()
@@ -770,7 +770,7 @@ while True:
 
         if not move_direction:  # Check for empty input (not move_direction)
             clear_screen()
-            play_sound('Menu popup.wav')
+            play_sound('SFX2.wav')
             print("\033[31mNo input! Please enter a move (W/A/S/D)\033[0m")
             continue
         
@@ -779,7 +779,7 @@ while True:
             move_count = move_count - 6
             board = copy.deepcopy(preboard) 
             if not mute:
-                play_sound('Balloon.wav') # PLay the sound
+                play_sound('SFX1.wav') # PLay the sound
             print("\033[32mloading Previous state complete\033[0m")
             continue
 
@@ -872,7 +872,7 @@ while True:
         if board == valid_move_check : # Validate next move
             clear_screen()
             print ("\033[31myour move is invalid\033[0m")
-            play_sound('Menu popup.wav')
+            play_sound('SFX2.wav')
             board = copy.deepcopy(valid_move_check)
             continue
         else :
@@ -883,5 +883,5 @@ while True:
         move(board, move_direction)
         place_random_tile(board)
         if not mute :
-            play_sound('Balloon.wav') # Play the sound
+            play_sound('SFX1.wav') # Play the sound
         clear_screen() 
