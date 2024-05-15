@@ -1,5 +1,18 @@
 ## 2048 Game in Python
 
+**Game Features:**
+
+- Colorful display of tiles based on their value.
+- Being able to pickup where you left the game at anytime
+- Keep track of your top scores
+- Nice sound effects
+- Clear screen functionality for a better playing experience.
+- User-friendly input handling and guidance.
+- Fast input mode 
+- Setting menu to edit yout preferences
+
+This code provides a fun and challenging 2048 game experience. Enjoy playing!
+
 **How to Play:**
 
 1. **Run the 2048** 
@@ -35,17 +48,12 @@
 
 **Sound Effects:**
 
-- The game uses sound effects for some actions (enable/disable with 'M').If you faced any error on that, make sure the `pygame` library is installed for sound to work. (First open cmd by search or Win+R, then type "pip install pygame")
+- The game uses sound effects for some actions (enable/disable with 'M').If you faced any error on that, make sure the `pygame` library is installed for sound to work. (First open `cmd` by search or `Win+R`, then type `pip install pygame`)
 
-**Game Features:**
+**Other libraries and dependencies**
 
-- Colorful display of tiles based on their value.
-- Being able to pickup where you left the game at anytime
-- Keep track of your top scores
-- Nice sound effects
-- Clear screen functionality for a better playing experience.
-- User-friendly input handling and guidance.
-- Fast input mode 
-- Setting menu to edit yout preferences
+- First of all you need python to run this code. You can download python from `https://www.python.org/downloads/`. This code also use `pynput` and `pyautogui` libraries. if you want to use the code be sure to install libraries by entering these commands on `cmd` (you can open up `cmd` with `Win + R`): `pip install pynput` and `pip install pyautogui`
 
-This code provides a fun and challenging 2048 game experience. Enjoy playing!
+**`.EXE` releases**
+
+- `.exe` files are made by `pyinstaller`. you can made this `.exe` file yoursel! first of all you need to install `pyinstaller` by entering this commands on `cmd` (you can open up `cmd` with `Win + R`): `pip install pyinstaller`. then you need to open the folder you cloned the repository(with `git clone https://github.com/Behroz666/py2048`) and right click and choose `open in terminal` (you can do this by `cd` command too). then this command will make `.exe` file for you: `pyinstaller --onefile 2048.py`. 
