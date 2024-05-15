@@ -8,6 +8,7 @@ import json
 import pygame
 from pynput import keyboard
 import pyautogui
+import urllib.request
 
 score = 0 # Defining score variable
 won = False # Flag for the 2048 win
@@ -19,6 +20,9 @@ move_count = 0 # Counter for move
 Ending = False # Flag for ending screen boxes headers
 first_F = False
 scape = True
+
+def download_file(url, file_name):
+    urllib.request.urlretrieve(url, file_name)
 
 appdir = dirname(realpath(__file__)) # Getts current app location
 datadir = "2048data" # folder name for the game data
@@ -39,6 +43,8 @@ if not os.path.exists(join(appdir, datadir)):
             with open(join(appdir, datadir, filename), 'w') as file :
                 data_string = "0,0,0"
                 file.write(data_string)
+        download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+        download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
         os_name = platform.system() # Gets os name
         # Define command for each os 
         if os_name == "Windows" :  
@@ -53,6 +59,27 @@ if not os.path.exists(join(appdir, datadir)):
             raise RuntimeError(f"Error hiding folder: {e}")
     except OSError as e:
       print(f"Error creating folder '{join(appdir, datadir)}': {e}")
+else: 
+    if not os.path.exists(join(appdir, datadir, "preferences.txt")):
+        with open(join(appdir, datadir, "preferences.txt"), 'w') as file :
+            data_string = "True\nFalse\nTrue\nFalse"
+            file.write(data_string)
+    filenames = ["topscores_3.txt", "topscores_4.txt", "topscores_5.txt"]
+    for filename in filenames:
+        if not os.path.exists(appdir, datadir, filename):
+            with open(join(appdir, datadir, filename), 'w') as file :
+                data_string = "0,0,0"
+                file.write(data_string)
+    filenames = ["save3score.txt", "save4score.txt", "save5score.txt"]
+    for filename in filenames : 
+        if not os.path.exists(join(appdir, datadir, filename)):
+            with open(join(appdir, datadir, filename), 'w') as file :
+                data_string = "0,0,0"
+                file.write(data_string)
+    if not os.path.exists(join(appdir, datadir, "SFX1.wav")):
+         download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+    if not os.path.exists(join(appdir, datadir, "SFX2.wav")):
+         download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
 
 def boolean_convert (filename) :
     try : 
@@ -884,4 +911,3 @@ while True:
         place_random_tile(board)
         if not mute :
             play_sound('SFX1.wav') # Play the sound
-        clear_screen() 
