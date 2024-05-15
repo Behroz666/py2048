@@ -3,7 +3,7 @@
 **How to Play:**
 
 1. **Run the 2048** 
-2. **Choose Grid Size:** You'll be prompted to enter a number (3, 4, or 5) to choose the grid size or a letter "X" to load 3*3, "C" to load 4*4 and "V" to load 5*5 saved game for that size. or you can enter setting menu to edit yout preferences.
+2. **Choose Grid Size:** You'll be prompted to enter a number (3, 4, or 5) to choose the grid size or a letter "X" to load 3x3, "C" to load 4x4 and "V" to load 5x5 saved game for that size. or you can enter setting menu to edit yout preferences.
 3. **Make Moves:** Use the following keys to move the tiles:
     - **W**: Move Up
     - **A**: Move Left
