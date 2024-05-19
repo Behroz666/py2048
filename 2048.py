@@ -13,7 +13,7 @@ import urllib.request
 score = 0 # Defining score variable
 won = False # Flag for the 2048 win
 set_board = True #Flag for setting the board or loading the file
-grid = ()   
+grid = ()
 first_move = True # Flag for just giving 2 on first move
 biggest_tile = 2 # Start the count for the biggest tile
 move_count = 0 # Counter for move
@@ -29,29 +29,29 @@ datadir = "2048data" # folder name for the game data
 if not os.path.exists(join(appdir, datadir)):
     try:
         os.makedirs(join(appdir, datadir), exist_ok=True)  # Create nested directories if necessary
-        # Create needed files with default values 
+        # Create needed files with default values
         with open(join(appdir, datadir, "preferences.txt"), 'w') as file :
             data_string = "True\nFalse\nTrue\nFalse"
             file.write(data_string)
         filenames = ["topscores_3.txt", "topscores_4.txt", "topscores_5.txt"]
-        for filename in filenames : 
+        for filename in filenames :
             with open(join(appdir, datadir, filename), 'w') as file :
                 data_string = "0\n0\n0"
                 file.write(data_string)
         filenames = ["save3score.txt", "save4score.txt", "save5score.txt"]
-        for filename in filenames : 
+        for filename in filenames :
             with open(join(appdir, datadir, filename), 'w') as file :
                 data_string = "0,0,0"
                 file.write(data_string)
         download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
         download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
         os_name = platform.system() # Gets os name
-        # Define command for each os 
-        if os_name == "Windows" :  
+        # Define command for each os
+        if os_name == "Windows" :
             command = ["attrib", "+H", "+R", join(appdir, datadir)]
         if os_name == "Linux" :
             command = ["chattr", "+h", join(appdir, datadir)]
-        if os_name == "Darwin" : 
+        if os_name == "Darwin" :
             command = ["chflags", "hidden", join(appdir, datadir)]
         try:
             subprocess.run(command, check=True) # Run the command to hide the data folder
@@ -59,19 +59,19 @@ if not os.path.exists(join(appdir, datadir)):
             raise RuntimeError(f"Error hiding folder: {e}")
     except OSError as e:
       print(f"Error creating folder '{join(appdir, datadir)}': {e}")
-else: 
+else:
     if not os.path.exists(join(appdir, datadir, "preferences.txt")):
         with open(join(appdir, datadir, "preferences.txt"), 'w') as file :
             data_string = "True\nFalse\nTrue\nFalse"
             file.write(data_string)
     filenames = ["topscores_3.txt", "topscores_4.txt", "topscores_5.txt"]
     for filename in filenames:
-        if not os.path.exists(appdir, datadir, filename):
+        if not os.path.exists(join(appdir, datadir, filename)):
             with open(join(appdir, datadir, filename), 'w') as file :
                 data_string = "0,0,0"
                 file.write(data_string)
     filenames = ["save3score.txt", "save4score.txt", "save5score.txt"]
-    for filename in filenames : 
+    for filename in filenames :
         if not os.path.exists(join(appdir, datadir, filename)):
             with open(join(appdir, datadir, filename), 'w') as file :
                 data_string = "0,0,0"
@@ -82,13 +82,13 @@ else:
          download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
 
 def boolean_convert (filename) :
-    try : 
-        with open(filename, 'r') as file : 
+    try :
+        with open(filename, 'r') as file :
             lines = file.readlines()
-    except FileNotFoundError : 
+    except FileNotFoundError :
         raise ValueError(f"File '{filename}' not found.")
     booleans = []
-    for line in lines : 
+    for line in lines :
         line = line.strip()
         if line.lower() == "true":
             booleans.append(True)
@@ -100,7 +100,7 @@ def boolean_convert (filename) :
 
 booleans = boolean_convert (join(appdir, datadir, "preferences.txt"))
 hide, mute, automute, fast_input = booleans
-if fast_input : 
+if fast_input :
     first_F  = True
 
 def clear_screen() : # Clear screen function
@@ -131,11 +131,11 @@ def place_random_tile(board):
             i, j = random.choice(empty_cells)  # Select a random empty cell
             board[i][j] = random.choice(weighted_choices)
 
-def score_box () : # Function for box that shows the game Stat 
+def score_box () : # Function for box that shows the game Stat
     global grid, score, biggest_tile, move_count, Ending
     count = int(move_count / 6)
     width = int(grid * 6) - 1
-    if not Ending : 
+    if not Ending :
         top_border = "┌" + "─" * (width) + "┐"
     else : # Change the top berder in ending screen for header box
         top_border = "├" + "─" * (width) + "┤"
@@ -163,7 +163,7 @@ def print_pattern(): # Cool Ascii art pattern
 def setting_menu(): # Defining setting menu
     global hide, mute, automute, fast_input, user_input, first_F
     invin = False # Flag for invalid input
-    while True : 
+    while True :
         clear_screen()
         if invin : # Error for invalid input
             print ("\033[31mInvalid input\033[0m")
@@ -171,25 +171,25 @@ def setting_menu(): # Defining setting menu
         if hide : # check and print the status of settings
             hideS = "\033[32mEnabled\033[0m"
             hideSL = 7 # Length of the shit cause len is broken with ANSI codes
-        else : 
+        else :
             hideS = "\033[31mDisabled\033[0m"
             hideSL = 8
         if mute :
             muteS = "\033[32mEnabled\033[0m"
             muteSL = 7
-        else : 
+        else :
             muteS = "\033[31mDisabled\033[0m"
             muteSL = 8
         if automute :
             automuteS = "\033[32mEnabled\033[0m"
             automuteSL = 7
-        else : 
+        else :
             automuteS = "\033[31mDisabled\033[0m"
             automuteSL = 8
         if fast_input :
             fast_inputS = "\033[32mEnabled\033[0m"
-            fast_inputSL = 7 
-        else : 
+            fast_inputSL = 7
+        else :
             fast_inputS = "\033[31mDisabled\033[0m"
             fast_inputSL = 8
 
@@ -200,7 +200,7 @@ def setting_menu(): # Defining setting menu
         # Making strings for each setting
         hide_str = "Hide input guide" + " "*int(arz - 16 - hideSL) + hideS
         mute_str = "Mute sound" + " "*int(arz - 10 - muteSL) + muteS
-        automute_str = "Automute" + " "*int(arz - 8 - automuteSL) + automuteS 
+        automute_str = "Automute" + " "*int(arz - 8 - automuteSL) + automuteS
         fastinput_str = "Fast input mode" + " "*int(arz - 15 - fast_inputSL) + fast_inputS
         box = f"{top_border}\n│{hide_str}│\n│{mute_str}│\n│{automute_str}│\n│{fastinput_str}│\n{bottom_border}" # Make the box
         print (box) # Print the box
@@ -220,17 +220,17 @@ Reset the settings to default     => Enter 'R'\033[0m
             invin = True
             continue
         if set_input == "h" : # Change the setting based on the input
-            if hide : 
+            if hide :
                 hide = False
                 continue
-            else : 
+            else :
                 hide = True
                 continue
-        if set_input == "m" : 
-            if mute : 
-                mute = False 
+        if set_input == "m" :
+            if mute :
+                mute = False
                 continue
-            else : 
+            else :
                 mute = True
                 continue
         if set_input == "a":
@@ -244,18 +244,18 @@ Reset the settings to default     => Enter 'R'\033[0m
             if fast_input :
                 fast_input = False
                 continue
-            else : 
+            else :
                 fast_input = True
                 first_F = True
                 continue
-        if set_input == "r" : # Reset back all settings to default 
+        if set_input == "r" : # Reset back all settings to default
             hide = True
             mute = False
             automute = True
             fast_input = False
             continue
         if set_input == "q": # Save and exit the setting menu
-            with open(join(appdir, datadir, "preferences.txt"), 'w') as file : # Save the file 
+            with open(join(appdir, datadir, "preferences.txt"), 'w') as file : # Save the file
                     data_string = "\n".join([str(hide), str(mute), str(automute), str(fast_input)])
                     file.write(data_string)
             clear_screen()
@@ -273,13 +273,13 @@ grid_size_options = { # Getting grid size with a dictionary for loading saved ga
     "s": 999,
 }
 
-while True: # First input screen 
+while True: # First input screen
     try:
-        print_pattern() 
+        print_pattern()
         # Input guide for first input screen
         print ("""
 Start a new game              => Enter your grid size (3-5)
-Load 3*3 board save file      => Enter 'x' 
+Load 3*3 board save file      => Enter 'x'
 Load 4*4 board save file      => Enter 'C'
 Load 5*5 board save file      => Enter 'V'
 Leave the game                => Enter 'Q'
@@ -295,7 +295,7 @@ Edit preferences              => Enter 'S'
         elif user_input in grid_size_options: # Check for loading saved games using dictionary
             grid = grid_size_options[user_input]
             if grid == 0 : # Esacpe the code if the input was Q (grid = 0)
-                pyautogui.hotkey('ctrl', 'c')
+                os._exit(0)
             if grid == 999 :
                 setting_menu()
                 continue
@@ -309,9 +309,11 @@ Edit preferences              => Enter 'S'
                 with open(scorename, 'r') as f : # Load stats to continue
                     data_string = f.read()
                 data_list = data_string.split(",")
-                score = int(data_list[0])  
+                score = int(data_list[0])
                 move_count = int(data_list[1])
                 biggest_tile = int(data_list[2])
+                if int(biggest_tile) >= 2048:
+                    won = True
                 clear_screen()
                 print("\033[32mLoading done\033[0m")
             except FileNotFoundError: # Start new matching game if the savefile was missing
@@ -356,7 +358,7 @@ color_codes = { # Color code dictionary for different number ranges
 def print_board(board) : # Prints the current state of the game board to the console
     global Ending
     a = 0
-    if not Ending : 
+    if not Ending :
         print("┌─────" + "┬─────"*(grid - 1) + "┐")
     else : # Change top border for ending screen
         print("├─────" + "┬─────"*(grid - 1) + "┤")
@@ -434,7 +436,7 @@ def move_left(board) :
                     biggest_tile = int(row[j])
         row = [tile for tile in row if tile != 0]
         row += [0] * (grid - len(row))
-        board[i] = row 
+        board[i] = row
 
 def move_right(board) :
     global score, won, biggest_tile, move_count
@@ -481,12 +483,12 @@ def top_score_check(score, filename):
         print("\033[33mCongratulations! You have a new top score!\033[0m")  # Highlight new top score
     width = int(grid * 6) - 1
     header = f"Top scores in {grid}*{grid}"  # Showing previous top scores
-    fir, sec, thir = top_scores 
-    if score == fir : 
+    fir, sec, thir = top_scores
+    if score == fir :
         fir = " "*(width - len(str(score)) - 5) + "\033[33m{}\033[0m".format(score)
-    if score == sec : 
+    if score == sec :
         sec = " "*(width - len(str(score)) - 5) + "\033[90m{}\033[0m".format(score)
-    if score == thir : 
+    if score == thir :
         thir =  " "*(width - len(str(score)) - 5) + "\033[31m{}\033[0m".format(score)
     # Making the box
     top_border = "┌" + "─" * width + "┐"
@@ -538,7 +540,7 @@ def fast_input_fun(keyst): # Defining a function for everything in fast move
     else : # Making next board
         board = copy.deepcopy(fvalidcheck)
         scoring = True
-        preboard = copy.deepcopy(board) # Backup for Z 
+        preboard = copy.deepcopy(board) # Backup for Z
         if keyst == "w" :
             move_up (board)
         if keyst == "a" :
@@ -590,13 +592,13 @@ def fast_input_fun(keyst): # Defining a function for everything in fast move
                 print_board(board)
 
                 # top scores check at the end
-                if grid == 3 : 
+                if grid == 3 :
                     filename = join(appdir, datadir, "topscores_3.txt")
                     top_score_check(score, filename)
-                if grid == 4 : 
+                if grid == 4 :
                     filename = join(appdir, datadir, "topscores_4.txt")
                     top_score_check(score, filename)
-                if grid == 5 : 
+                if grid == 5 :
                     filename = join(appdir, datadir, "topscores_5.txt")
                     top_score_check(score, filename)
 
@@ -632,7 +634,7 @@ def on_press(key): # Key press listener function
             move_count = move_count - 6 # Subtract one from the move count
             print ("\033[93mPress 'F' to exit fast input mode\033[0m")
             score_box()
-            board = copy.deepcopy(preboard) 
+            board = copy.deepcopy(preboard)
             print_board(board)
             if not mute :
                 play_sound('SFX1.wav') # Play the sound
@@ -669,7 +671,7 @@ if set_board : # Set the starting board
 while True:
     move_direction = ""
     if not fast_input :
-        if not hide : # Input guide  
+        if not hide : # Input guide
             print ("Hide input guides         => Enter 'H'")
             print ("Leave the game            => Enter 'Q'")
             print ("Save the game             => Enter 'O'")
@@ -700,7 +702,7 @@ while True:
             listener.join()
     else :
         move_direction = input("\033[93mEnter move (W/A/S/D): \033[0m").upper() # Normal input
-    
+
         valid_moves = "WASDZQOHMF"  # String containing all valid moves
         if move_direction not in valid_moves:
             clear_screen()
@@ -723,21 +725,21 @@ while True:
             print_board(board)
             if not scape : # Check if its normal q or lose in fast input mode
                 # Check for the top score before breaking
-                if grid == 3 : 
+                if grid == 3 :
                     filename = join(appdir, datadir, "topscores_3.txt")
                     top_score_check(score, filename)
 
-                if grid == 4 : 
+                if grid == 4 :
                     filename = join(appdir, datadir, "topscores_4.txt")
                     top_score_check(score, filename)
 
-                if grid == 5 : 
+                if grid == 5 :
                     filename = join(appdir, datadir, "topscores_5.txt")
                     top_score_check(score, filename)
             print_pattern()
             input("Press a key to exit.")
             break
-        
+
         if move_direction == "O" : # Saving the current state to a savefile
             clear_screen()
             # Save Current game board and stats
@@ -767,7 +769,7 @@ while True:
                 with open(join(appdir, datadir, "save5score.txt"), 'w') as file :
                     data_string = ",".join([str(score), str(move_count), str(biggest_tile)])
                     file.write(data_string)
-            
+
             print ("\033[32mSave complete\033[0m")
             con = ()
             if con != "y" or "n":
@@ -791,8 +793,8 @@ while True:
                 elif con == "y":
                     clear_screen()
                     print("\033[32mContinue the game\033[0m")
-                    continue 
-                else : 
+                    continue
+                else :
                     print ("\033[32mInvalid input. Continue the game...\033[0m")
 
         if not move_direction:  # Check for empty input (not move_direction)
@@ -800,11 +802,11 @@ while True:
             play_sound('SFX2.wav')
             print("\033[31mNo input! Please enter a move (W/A/S/D)\033[0m")
             continue
-        
+
         if move_direction == "Z": # Restoring last move in the game
             clear_screen()
             move_count = move_count - 6
-            board = copy.deepcopy(preboard) 
+            board = copy.deepcopy(preboard)
             if not mute:
                 play_sound('SFX1.wav') # PLay the sound
             print("\033[32mloading Previous state complete\033[0m")
@@ -819,7 +821,7 @@ while True:
                 mute = True
                 clear_screen()
                 continue
-        
+
         if move_direction == "H" : # Hiding the input guides
             if not hide :
                 hide = True
@@ -829,20 +831,20 @@ while True:
                 hide = False
                 clear_screen()
                 continue
-        
+
         if move_direction == "F": # Enable the flag to enter fast input mode
             fast_input = True
             clear_screen()
             first_F = True
             continue
-        
+
         if score > 1000 : # Hide input guides after a while in the game
             hide = True
 
         GOcheckboard = copy.deepcopy(board) # Backing up the board before making the check for next move
         scoring = False # Flaging the scoring to False so it dont count
         if 0 not in board :
-            # Making a board for every next possibility 
+            # Making a board for every next possibility
             move_up (board)
             boardW = copy.deepcopy(board)
             board = copy.deepcopy(GOcheckboard)
@@ -877,13 +879,13 @@ while True:
                 print_board(board)
 
                 # top scores check at the end
-                if grid == 3 : 
+                if grid == 3 :
                     filename = join(appdir, datadir, "topscores_3.txt")
                     top_score_check(score, filename)
-                if grid == 4 : 
+                if grid == 4 :
                     filename = join(appdir, datadir, "topscores_4.txt")
                     top_score_check(score, filename)
-                if grid == 5 : 
+                if grid == 5 :
                     filename = join(appdir, datadir, "topscores_5.txt")
                     top_score_check(score, filename)
 
