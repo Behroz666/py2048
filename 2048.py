@@ -913,3 +913,4 @@ while True:
         place_random_tile(board)
         if not mute :
             play_sound('SFX1.wav') # Play the sound
+        clear_screen()

@@ -1,3 +1,6 @@
 # Ignore entrie folder
 
 /2048data/
+/2048.spec
+/dist
+/build
