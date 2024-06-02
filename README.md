@@ -15,7 +15,7 @@ This code provides a fun and challenging 2048 game experience. Enjoy playing!
 
 **How to Play:**
 
-1. **Run the 2048** 
+1. **Run the 2048** Download the `.exe ` file from [releases in github](https://github.com/Behroz666/py2048/releases) and run it.(if you are using linux or mac follow the instruction for runing the code your self)
 2. **Choose Grid Size:** You'll be prompted to enter a number (3, 4, or 5) to choose the grid size or a letter "X" to load 3x3, "C" to load 4x4 and "V" to load 5x5 saved game for that size. or you can enter setting menu to edit yout preferences.
 3. **Make Moves:** Use the following keys to move the tiles:
     - **W**: Move Up
@@ -46,14 +46,16 @@ This code provides a fun and challenging 2048 game experience. Enjoy playing!
 
 - The game keeps track of your top scores for each grid size.
 
-**Sound Effects:**
-
-- The game uses sound effects for some actions (enable/disable with 'M').If you faced any error on that, make sure the `pygame` library is installed for sound to work. (First open `cmd` by search or `Win+R`, then type `pip install pygame`)
-
-**Other libraries and dependencies**
-
-- First of all you need python to run this code. You can download python from `https://www.python.org/downloads/`. This code also use `pynput` and `pyautogui` libraries. if you want to use the code be sure to install libraries by entering these commands on `cmd` (you can open up `cmd` with `Win + R`): `pip install pynput` and `pip install pyautogui`
-
 **`.EXE` releases**
 
 - `.exe` files are made by `pyinstaller`. you can made this `.exe` file yoursel! first of all you need to install `pyinstaller` by entering this commands on `cmd` (you can open up `cmd` with `Win + R`): `pip install pyinstaller`. then you need to open the folder you cloned the repository(with `git clone https://github.com/Behroz666/py2048`) and right click and choose `open in terminal` (you can do this by `cd` command too). then this command will make `.exe` file for you: `pyinstaller --onefile 2048.py`. 
+
+**libraries and dependencies to run the code**
+
+- First of all you need python to run this code. You can download python from `https://www.python.org/downloads/`.
+
+- You can install all dependecies by runing `pip install -r requirements.txt`
+
+- This code use `pynput` and `pyautogui` libraries. if you want to use the code be sure to install libraries by entering these commands on `cmd` (you can open up `cmd` with `Win + R`): `pip install pynput` and `pip install pyautogui`
+
+- The game uses sound effects for some actions (enable/disable with 'M').If you faced any error on that, make sure the `pygame` library is installed for sound to work. (First open `cmd` by search or `Win+R`, then type `pip install pygame`)
