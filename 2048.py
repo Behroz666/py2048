@@ -43,8 +43,17 @@ if not os.path.exists(join(appdir, datadir)):
             with open(join(appdir, datadir, filename), 'w') as file :
                 data_string = "0,0,0"
                 file.write(data_string)
-        download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
-        download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
+        try:
+            download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+            download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
+        except:
+            print("download unsuccessful trying again...")
+            try:
+                download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+                download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
+            except:
+                input("fail to download press enter to leave")
+                os._exit(0)
         os_name = platform.system() # Gets os name
         # Define command for each os
         if os_name == "Windows" :
@@ -77,9 +86,25 @@ else:
                 data_string = "0,0,0"
                 file.write(data_string)
     if not os.path.exists(join(appdir, datadir, "SFX1.wav")):
-         download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+        try:
+            download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+        except:
+            print("download unsuccessful trying again...")
+            try:
+                download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX1.wav", join(appdir, datadir, "SFX1.wav"))
+            except:
+                input("fail to download press enter to leave")
+                os._exit(0)
     if not os.path.exists(join(appdir, datadir, "SFX2.wav")):
-         download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
+        try:
+            download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
+        except:
+            print("download unsuccessful trying again...")
+            try:
+                download_file("https://github.com/Behroz666/py2048/raw/main/2048data/SFX2.wav", join(appdir, datadir, "SFX2.wav"))
+            except:
+                input("fail to download press enter to leave")
+                os._exit(0)
 
 def boolean_convert (filename) :
     try :

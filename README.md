@@ -15,7 +15,7 @@ This code provides a fun and challenging 2048 game experience. Enjoy playing!
 
 **How to Play:**
 
-1. **Run the 2048** Download the `.exe ` file from [releases in github](https://github.com/Behroz666/py2048/releases) and run it.(if you are using linux or mac follow the instruction for runing the code your self)
+1. **Run the 2048** Download the `.exe ` file from [releases in github](https://github.com/Behroz666/py2048/releases) and run it.(if you are using linux or mac follow the instruction for [runing the code your self](https://github.com/Behroz666/py2048#:~:text=libraries%20and%20dependencies%20to%20run%20the%20code))
 2. **Choose Grid Size:** You'll be prompted to enter a number (3, 4, or 5) to choose the grid size or a letter "X" to load 3x3, "C" to load 4x4 and "V" to load 5x5 saved game for that size. or you can enter setting menu to edit yout preferences.
 3. **Make Moves:** Use the following keys to move the tiles:
     - **W**: Move Up
